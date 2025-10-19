@@ -24,14 +24,16 @@ L’entreprise dispose d’un système d’information centralisé réparti entr
 ## 📡 Schéma d’Infrastructure Réseau
 
 <p align="center">
-<img src="https://github.com/user-attachments/assets/7e62e254-81af-43ae-8ddf-ea8ee55d6b1d" alt="Pictures" width="1200" >
+<img src="https://github.com/user-attachments/assets/7e62e254-81af-43ae-8ddf-ea8ee55d6b1d" alt="Pictures" width="1500" >
 </p>
 
 ## ⚙️ Avancement du Projet
 
-- Mise en place d’un laboratoire virtualisé Proxmox pour les travaux pratiques
-- Installation et configuration du serveur Zabbix sur Debian
-- Supervision de serveur Windows et Linux via l’agent Zabbix ou via SNMP
+✅ **Mise en place du laboratoire virtualisé Proxmox**  
+✅ **Installation et configuration d’un serveur de supervision Zabbix sur Debian**  
+✅ **Supervision de serveurs Linux et Windows :**
+- Agent **Zabbix** natif
+- **SNMP** 
 
 ## 🛠️ Technologies et Outils Utilisés
 
