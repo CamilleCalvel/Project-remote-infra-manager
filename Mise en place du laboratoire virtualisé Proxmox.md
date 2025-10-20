@@ -30,10 +30,12 @@
 **🎯 Objectif** : Configurer les **bridges réseau** sur le nœud Proxmox **SRV-AIS2** afin de permettre aux machines virtuelles ou conteneurs d'accéder au réseau physique.
 
 <p align="center">
-<img src="https://github.com/user-attachments/assets/7ba4b82b-bdb6-4b42-93aa-0b9689ec9d96" alt="Pictures" width="700" >
+<img src="https://github.com/user-attachments/assets/3e76b6ce-6d7c-4f5e-9ab3-b440d136eed9" alt="Pictures" width="850" >
 </p>
 
-#### Étape 1 : Création du bridge
+---  
+
+### Étape 1 : Création du bridge
 
 <p align="center">
 <img src="https://github.com/user-attachments/assets/8e0fc111-0090-444d-acbc-2cd5a0be7069" alt="Pictures" width="500" >
@@ -55,8 +57,9 @@
 5. **Choisir “Linux Bridge”**
    - Dans la liste déroulante, sélectionner **`Linux Bridge`** pour commencer la création du pont réseau permettant aux VM/LXC de communiquer avec le réseau physique.
 
+---  
 
-#### Étape 2 : Configuration du bridge
+### Étape 2 : Configuration du bridge
 
 <p align="center">
 <img src="https://github.com/user-attachments/assets/7ce5359f-caf7-455e-84d7-5a721b14b750" alt="Pictures" width="700" >
@@ -80,6 +83,25 @@
 6. **Activer la configuration**
    - Cliquez sur **`Apply Configuration`** pour activer le bridge.
 
+---
+
+### Étape 3 : Associer le bridge à une VM dans Proxmox
+
+<p align="center">
+<img src="https://github.com/user-attachments/assets/035b9329-775d-462d-859d-6a2347fc04b7" alt="Pictures" width="800" >
+</p>
+
+1. **Accéder à la configuration de la VM**  
+   - Dans l’arborescence de Proxmox, sélectionnez la machine virtuelle concernée (exemple : `Virtual Machine 1001 (stormshield-site1)`) puis rendez-vous sur l’onglet **`Hardware`**.
+
+2. **Ajouter ou modifier une interface réseau**  
+   - Vous pouvez soit **ajouter une nouvelle interface réseau** (`Add` → `Network Device`) soit **éditer une interface existante** en la sélectionnant puis en cliquant sur **`Edit`**.
+
+3. **Sélectionner le bridge**  
+   - Dans la fenêtre de configuration, sélectionnez le **bridge réseau** voulu dans le champ **`Bridge`** (exemple : `vmbr10`).
+
+4. **Valider l’ajout ou la modification**  
+   - Cliquez sur **`Create`** ou **`OK`** pour valider l’association du bridge à l’interface réseau de la VM.
 
 </details>
 </details>
