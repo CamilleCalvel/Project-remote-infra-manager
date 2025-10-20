@@ -3,7 +3,14 @@
 <img src="https://github.com/user-attachments/assets/b1110e3a-a99e-46e3-85e4-9b8ba662131b" alt="Pictures" width="2500" >
 </p>
 
-## Plan d'adressage
+<details><summary><h2>Configuration réseau sur Proxmox</h2></summary>  
+
+<p align="center">
+<img src="https://github.com/user-attachments/assets/2f497662-561d-4972-a961-63de39a3c66a" alt="Pictures" width="1200" >
+</p>
+</details>
+
+<details><summary><h2>Plan d'adressage</h2></summary>  
 
 | Nom machine                | Adresse IP            | Passerelle       | Commentaire      |
 |----------------------------|-----------------------|------------------|------------------|
@@ -21,12 +28,16 @@
 | **ubuntu-server-site2**    | 192.168.13.101/24     | 192.168.13.10    | LAN-SERVEURS     |
 | **ubuntu-client-site1**    | DHCP                  | 192.168.12.10    | LAN-CLIENTS      |
 
+</details>
 
 
-## Stormshield
+
+
+<details><summary><h2>Stormshield</h2></summary>
 ### Mise en place de Stormshield
 ### Paramétrage des interfaces réseaux
 ### Mise en place du Nat
 ### VPN site à site
 ### Dhcp server
 ### Port forwarding
+</details>
