@@ -72,14 +72,17 @@
    - Cochez **`Autostart`** pour que le bridge démarre automatiquement avec le système.
 
 4. **Ajouter un commentaire**  
-   - Précisez l’usage dans le champ **`Comment`** (exemple : `Réseau LAN Serveurs (Toul)`).
+   - Précisez l’usage dans le champ **`Comment`** (exemple : `Réseau LAN Serveurs`).
 
 5. **Valider la création**  
    - Une fois tous les champs remplis, cliquez sur le bouton **`Create`** pour finaliser la création du bridge.
+     
+6. **Activer la configuration**
+   - Cliquez sur **`Apply Configuration`** pour activer le bridge.
 
 
 </details>
-
+</details>
 <details><summary><h2>Stormshield</h2></summary>
   
 ### Mise en place de Stormshield
