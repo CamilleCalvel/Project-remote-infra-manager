@@ -82,7 +82,7 @@ quit;
 ### 1.1.4 Importation de la structure de base de données initiale
 
 ```bash
-zcat /usr/share/zabbix-sql-scripts/mysql/server.sql.gz | mysql --default-character-set=utf8mb4 -u zabbix -p
+zcat /usr/share/zabbix/sql-scripts/mysql/server.sql.gz | mysql --default-character-set=utf8mb4 -u zabbix -p
 ```
 
 > Entrez le mot de passe créé précédemment.
@@ -109,8 +109,6 @@ sudo nano /etc/zabbix/zabbix_server.conf
 
 - Modifiez `DBPassword` pour inclure le mot de passe de la base de données Zabbix  
 - Modifiez `DBName` si vous avez changé le nom par défaut
-
-> Pour rechercher dans nano : `Ctrl + W`. Pour quitter la recherche : `Ctrl + C`.
 
 ---
 
@@ -139,8 +137,8 @@ server_name example.com;
 Redémarrez les services et activez-les au démarrage :
 
 ```bash
-systemctl restart zabbix-server zabbix-agent nginx php7.4-fpm
-systemctl enable zabbix-server zabbix-agent nginx php7.4-fpm
+systemctl restart zabbix-server zabbix-agent nginx php8.4-fpm
+systemctl enable zabbix-server zabbix-agent nginx php8.4-fpm
 ```
 
 ---
@@ -166,7 +164,7 @@ http://<nom-de-votre-serveur>:8080
    - Port : valeur par défaut  
    - Nom de la base : `zabbix`  
    - Utilisateur : `zabbix`  
-   - Mot de passe : `poiuyt`  
+   - Mot de passe : `password`  
 4. Indiquez le nom du serveur Zabbix (identique au `hostname`)  
 5. Cliquez sur **Prochaine étape** jusqu'à arriver sur la page de résumé  
 6. Cliquez sur **Prochaine étape** pour finaliser l’installation
