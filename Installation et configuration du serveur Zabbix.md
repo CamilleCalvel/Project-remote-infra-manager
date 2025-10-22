@@ -244,7 +244,7 @@ cat /usr/share/zabbix-sql-scripts/mysql/proxy.sql | mysql --default-character-se
 ## 2.6 Désactiver l'option `log_bin_trust_function_creators`
 
 ``` bash
-mysql -uroot -p
+mysql -u root -p
 ```
 
 ``` sql
