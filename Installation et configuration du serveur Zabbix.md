@@ -6,8 +6,7 @@ Pour atteindre cet objectif, l’entreprise prévoit l’installation de **Zabbi
 Cette étape constitue le **socle technique indispensable** à la supervision globale de l’ensemble des sites, permettant de centraliser les alertes, le suivi des performances et la maintenance proactive des équipements.
 
 ---
-
-# 1. Installation de Zabbix
+<details><summary><h1>1. Installation de Zabbix</h1></summary>  
 
 ## 1.1 Préparation et téléchargement
 
@@ -173,7 +172,9 @@ http://<nom-de-votre-serveur>:8080
 > - Utilisateur : `Admin` (A majuscule)  
 > - Mot de passe : `zabbix`
 
-# 2.Installation du du Proxy Zabbix
+</details>
+
+<details><summary><h1>2. Installation du du Proxy Zabbix</h1></summary>  
 
 Dans le cadre de la supervision de notre **site distant (Site 2)**, cette procédure décrit l’installation et la configuration d’un **proxy Zabbix**.  
 Ce proxy permet de remonter les informations de supervision vers le serveur Zabbix principal, situé sur notre infrastructure centrale.
@@ -260,4 +261,4 @@ Modifier `/etc/zabbix/zabbix_proxy.conf` puis :
 systemctl restart zabbix-proxy
 systemctl enable zabbix-proxy
 ```
-
+</details>
