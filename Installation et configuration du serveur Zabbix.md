@@ -179,7 +179,7 @@ http://<nom-de-votre-serveur>:8080
 Dans le cadre de la supervision de notre **site distant (Site 2)**, cette procédure décrit l’installation et la configuration d’un **proxy Zabbix**.  
 Ce proxy permet de remonter les informations de supervision vers le serveur Zabbix principal, situé sur notre infrastructure centrale.
 
-Le serveur proxy utilisé pour cette installation est une machine **Ubuntu 24.04 LTS**, intégrée au **LAN serveurs** de notre architecture réseau.
+Le serveur proxy utilisé pour cette installation est une machine **Ubuntu 24.04**, intégrée au **LAN serveurs** de notre architecture réseau.
 
 📎 [**Schéma réseau associé**](https://github.com/CamilleCalvel/Project-remote-infra-manager?tab=readme-ov-file#-sch%C3%A9ma-dinfrastructure-r%C3%A9seau)
 
@@ -196,6 +196,7 @@ sudo -s
 <p align="center">
 <img src="https://github.com/user-attachments/assets/5d0177c1-afc4-43e8-b487-968bd2fed7bf" alt="Téléchargements Zabbix" width="1100">
 </p>
+> Dans ce document, la version **7.0 LTS** a été installée sur une machine **Ubuntu 24.04**.   
 
 Télécharger le paquet du dépôt officiel Zabbix :
 
@@ -214,6 +215,7 @@ apt install zabbix-proxy-mysql zabbix-sql-scripts
 ## 2.4 Créer la base de données initiale pour le Proxy
 
 ⚠️ Assurez-vous qu'un serveur MySQL/MariaDB est installé et fonctionnel.
+> Dans cette procédure, la base de données **MariaDB** a été installée
 
 ### a. Se connecter à MySQL
 
