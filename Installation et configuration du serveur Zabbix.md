@@ -253,15 +253,19 @@ quit;
 ```
 ## 2.7 Configuration du Proxy Zabbix via le fichier de configuration
 
-
+Modifier `/etc/zabbix/zabbix_proxy.conf`
 
 
 ## 2.8 Redémarrer et activer le service Proxy Zabbix 
-
-Modifier `/etc/zabbix/zabbix_proxy.conf` puis :
 
 ``` bash
 systemctl restart zabbix-proxy
 systemctl enable zabbix-proxy
 ```
+## 2.9 Ajout du Proxy dans le serveur Zabbix
+
+<p align="center">
+<img src="https://github.com/user-attachments/assets/ec654e60-7bf2-45f8-a885-d8d8758da062" alt="Téléchargements Zabbix" width="800">
+</p>
+
 </details>
