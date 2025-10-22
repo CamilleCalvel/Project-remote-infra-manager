@@ -359,3 +359,99 @@ Une fois le service **Zabbix Proxy** installé, configuré et démarré, il doit
 </p>
 
 </details>
+
+<details><summary><h1>3. Activer le chiffrement du trafic entre le serveur Zabbix et son Proxy</h1></summary>  
+
+Sur Zabbix, les communications entre le serveur et les agents ou proxys ne sont pas chiffrées par défaut. Cette procédure explique comment activer un chiffrement symétrique par clé partagée PSK.
+
+## 3.1 Génération de la clé partagée PSK
+
+1. Générer la clé sur le proxy et l'enregistrer dans un fichier :
+
+```
+
+openssl rand -hex 128 > /usr/local/etc/zabbix_proxy.psk
+
+```
+
+2. Restreindre les droits d'accès au fichier créé :
+
+```
+
+chown zabbix.zabbix /usr/local/etc/zabbix_proxy.psk
+chmod 400 /usr/local/etc/zabbix_proxy.psk
+
+```
+
+- `chown zabbix.zabbix` : le fichier appartient à l'utilisateur et groupe `zabbix`.
+- `chmod 400` : seul le propriétaire a le droit de lecture.
+
+---
+
+## 3.2 Configuration du proxy Zabbix
+
+Ajouter les lignes suivantes dans le fichier de configuration du proxy `/etc/zabbix/zabbix_proxy.conf` :
+
+```
+
+TLSConnect=psk
+TLSAccept=psk
+TLSPSKIdentity=proxyzabbix
+TLSPSKFile=/usr/local/etc/zabbix_proxy.psk
+
+```
+
+- **TLSConnect** : active TLS avec méthode PSK pour la connexion du proxy au serveur.
+- **TLSAccept** : active TLS sur les connexions entrantes au proxy.
+- **TLSPSKIdentity** : nom du proxy pour la connexion TLS.
+- **TLSPSKFile** : chemin du fichier clé partagée.
+
+Redémarrez le service proxy :
+
+```
+
+systemctl restart zabbix-proxy
+
+```
+Récupérer la clé de chiffrement avec la commande cat /usr/local/etc/zabbix_proxy.psk
+
+## 3.3 Configuration dans l'interface web Zabbix
+
+1. Allez dans *Administration* > *Proxys*.
+2. Sélectionnez le proxy et allez dans l'onglet **Chiffrement**.
+<p align="center">
+<img src="https://github.com/user-attachments/assets/5ff7bf6b-f236-4f32-b144-3cc80fed18ca" alt="Création Proxy Zabbix" width="700">
+</p>
+
+3. Activez le chiffrement en sélectionnant **PSK**.
+4. Dans "Identité PSK", entrez le même nom que `TLSPSKIdentity` du fichier proxy (ex : `proxyzabbix`).
+5. Collez la clé partagée générée dans le champ **PSK**.
+
+<p align="center">
+<img src="https://github.com/user-attachments/assets/2bd6b4e5-79c7-4bdb-a6f2-503b0659fae2" alt="Création Proxy Zabbix" width="650">
+</p>
+
+
+## 3.4 Vérification du chiffrement
+
+### Vérifier les logs
+
+Rechercher dans les logs serveur pour les connexions TLS :
+
+```
+grep -ni "TLS" /var/log/zabbix/zabbix_server.log
+```
+Les entrées doivent indiquer une connexion TLS établie :
+
+- `End of zbx_tls_connect():SUCCEED (established TLSv1.3 ...)`
+
+<p align="center">
+<img src="https://github.com/user-attachments/assets/ebde56f8-bc0a-45b6-a428-b0fcf70b1060" alt="Création Proxy Zabbix" width="700">
+</p>
+
+Faire la même vérification côté proxy.
+```
+grep -ni "TLS" /var/log/zabbix/zabbix_proxy.log
+```
+
+</details>
