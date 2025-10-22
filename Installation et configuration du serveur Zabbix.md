@@ -174,7 +174,7 @@ http://<nom-de-votre-serveur>:8080
 
 </details>
 
-<details><summary><h1>2. Installation du du Proxy Zabbix</h1></summary>  
+<details><summary><h1>2. Installation du Proxy Zabbix</h1></summary>  
 
 Dans le cadre de la supervision de notre **site distant (Site 2)**, cette procédure décrit l’installation et la configuration d’un **proxy Zabbix**.  
 Ce proxy permet de remonter les informations de supervision vers le serveur Zabbix principal, situé sur notre infrastructure centrale.
