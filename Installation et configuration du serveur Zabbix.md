@@ -456,3 +456,138 @@ Les résultats doivent également montrer l’établissement de la connexion TLS
 
 </details>
 
+<details><summary><h1>4. Sécurisation de l'accès à l'interface web en HTTPS</h1></summary>
+Pour sécuriser l'accès à l'interface web de Zabbix, il est recommandé d'activer **HTTPS (SSL/TLS)** via Nginx.
+
+## 4.1 Génération de la clé de chiffrement et des certificats
+
+1. Générez une clé privée RSA 2048 bits pour le serveur Web Nginx avec OpenSSL :
+
+```bash
+openssl genpkey -algorithm RSA -out private.key -pkeyopt rsa_keygen_bits:2048
+```
+
+2. Créez une CSR (demande de signature de certificat) en configurant les informations de votre organisme :
+
+```bash
+openssl req -new -key private.key -out certificate.csr
+```
+
+> **Astuce :** le "Common Name" (CN) doit correspondre au nom d'hôte utilisé pour accéder au serveur web.
+
+3. Générez un certificat auto-signé valide 365 jours :
+
+```bash
+openssl x509 -req -in certificate.csr -signkey private.key -out certificate.crt -days 365
+```
+
+4. Déplacez les fichiers vers des emplacements adaptés :
+
+```bash
+mv certificate.crt /etc/ssl/certs/certificate_zabbix_server.crt
+mv certificate.csr /etc/ssl/certs/certificate_zabbix_server.csr
+mv private.key /etc/ssl/private/private_zabbix_server.key
+```
+
+---
+
+## 4.2 Configuration de Nginx
+
+1. Ouvrez le fichier de configuration du site par défaut :
+
+```bash
+nano /etc/nginx/sites-available/default
+```
+
+2. Localisez le bloc `server` et ajoutez/modifiez les directives SSL :
+
+```nginx
+ssl_certificate /etc/ssl/certs/certificate_zabbix_server.crt;
+ssl_certificate_key /etc/ssl/private/private_zabbix_server.key;
+listen 443 ssl;
+```
+
+<p align="center">
+<img src="https://github.com/user-attachments/assets/7f23cd6b-4960-4eda-bacd-feaeb10512ca" alt="Vérification TLS Proxy" width="850">
+</p>
+
+4. Testez la configuration Nginx :
+
+```bash
+nginx -t
+# ou
+/usr/sbin/nginx -t
+```
+
+5. Rechargez Nginx pour appliquer la configuration :
+
+```bash
+systemctl reload nginx
+```
+
+---
+
+## 4.3 Configuration de Zabbix sous Nginx
+
+1. Modifiez le fichier de configuration de Zabbix (souvent `/etc/nginx/conf.d/zabbix.conf`).
+
+2. Ajoutez un bloc serveur pour servir Zabbix via HTTPS :
+
+```nginx
+server {
+    listen 443 ssl;
+    server_name fqdn_du_server;
+    ssl_certificate /etc/ssl/certs/certificate_zabbix_server.crt;
+    ssl_certificate_key /etc/ssl/private/private_zabbix_server.key;
+
+    location / {
+        proxy_pass http://127.0.0.1:8080; # redirection vers le serveur Zabbix sur le port 8080
+        include /etc/nginx/proxy_params;
+    }
+}
+```
+
+> Si vous n'avez pas de résolution DNS, remplacez `server_name` par l'adresse IP du serveur.
+
+<p align="center">
+<img src="https://github.com/user-attachments/assets/e7b9da8e-1774-45a8-a343-296d5cd594fd" alt="Vérification TLS Proxy" width="850">
+</p>
+
+3. Vérifiez la syntaxe :
+
+```bash
+nginx -t
+# ou
+/usr/sbin/nginx -t
+```
+
+4. Redémarrez Nginx pour appliquer les modifications :
+
+```bash
+systemctl restart nginx
+```
+
+---
+
+## 4.4 Connexion en HTTPS
+
+- Accédez à l'interface web de Zabbix via :
+
+```text
+https://debian-server-11.lab.lan
+```
+
+ou
+
+```text
+https://192.168.19.11
+```
+
+> Le port 8080 n'est plus nécessaire.  
+> Le navigateur affichera un avertissement car le certificat est auto-signé, poursuivez la connexion.
+
+- La connexion sera sécurisée via HTTPS, et vous pourrez vérifier le certificat directement dans le navigateur.
+  
+--- 
+
+✅ L’accès web de Zabbix est désormais chiffré, assurant la confidentialité des informations échangées.
