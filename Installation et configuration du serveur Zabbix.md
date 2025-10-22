@@ -508,7 +508,7 @@ listen 443 ssl;
 ```
 
 <p align="center">
-<img src="https://github.com/user-attachments/assets/7f23cd6b-4960-4eda-bacd-feaeb10512ca" alt="Vérification TLS Proxy" width="850">
+<img src="https://github.com/user-attachments/assets/7f23cd6b-4960-4eda-bacd-feaeb10512ca" alt="Vérification TLS Proxy" width="600">
 </p>
 
 4. Testez la configuration Nginx :
@@ -550,7 +550,7 @@ server {
 > Si vous n'avez pas de résolution DNS, remplacez `server_name` par l'adresse IP du serveur.
 
 <p align="center">
-<img src="https://github.com/user-attachments/assets/e7b9da8e-1774-45a8-a343-296d5cd594fd" alt="Vérification TLS Proxy" width="850">
+<img src="https://github.com/user-attachments/assets/e7b9da8e-1774-45a8-a343-296d5cd594fd" alt="Vérification TLS Proxy" width="700">
 </p>
 
 3. Vérifiez la syntaxe :
@@ -574,20 +574,27 @@ systemctl restart nginx
 - Accédez à l'interface web de Zabbix via :
 
 ```text
-https://debian-server-11.lab.lan
-```
-
-ou
-
-```text
-https://192.168.19.11
+https://192.168.10.101
 ```
 
 > Le port 8080 n'est plus nécessaire.  
 > Le navigateur affichera un avertissement car le certificat est auto-signé, poursuivez la connexion.
 
+<p align="center">
+<img src="https://github.com/user-attachments/assets/2a9263b2-b06c-4b84-a3ba-f27e6b6a69e7" alt="Vérification TLS Proxy" width="850">
+</p>
+
 - La connexion sera sécurisée via HTTPS, et vous pourrez vérifier le certificat directement dans le navigateur.
-  
+<p align="center">
+<img src="https://github.com/user-attachments/assets/17ea08fd-3323-418e-bb76-17c71f487971" alt="Vérification TLS Proxy" width="650">
+</p>
+<p align="center">
+<img src="https://github.com/user-attachments/assets/2838cc47-1c63-4686-a436-67eb9bd0dac2" alt="Vérification TLS Proxy" width="700">
+</p>
+<p align="center">
+<img src="https://github.com/user-attachments/assets/d681bbf6-37bb-444a-8701-28b67790ef08" alt="Vérification TLS Proxy" width="685">
+</p>
+
 --- 
 
 ✅ L’accès web de Zabbix est désormais chiffré, assurant la confidentialité des informations échangées.
