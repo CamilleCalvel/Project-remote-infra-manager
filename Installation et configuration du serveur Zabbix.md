@@ -196,6 +196,7 @@ sudo -s
 <p align="center">
 <img src="https://github.com/user-attachments/assets/5d0177c1-afc4-43e8-b487-968bd2fed7bf" alt="Téléchargements Zabbix" width="1100">
 </p>
+
 > Dans ce document, la version **7.0 LTS** a été installée sur une machine **Ubuntu 24.04**.   
 
 Télécharger le paquet du dépôt officiel Zabbix :
