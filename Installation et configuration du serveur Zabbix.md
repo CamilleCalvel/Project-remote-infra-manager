@@ -251,10 +251,79 @@ mysql -u root -p
 set global log_bin_trust_function_creators = 0;
 quit;
 ```
-## 2.7 Configuration du Proxy Zabbix via le fichier de configuration
 
-Modifier `/etc/zabbix/zabbix_proxy.conf`
+## 2.7 Configuration du Proxy Zabbix 
 
+Cette étape consiste à configurer le fichier `zabbix_proxy.conf` afin de permettre au proxy d’établir la communication avec le serveur Zabbix principal et la base de données locale.  
+
+```bash
+nano /etc/zabbix/zabbix_proxy.conf
+```
+
+### 📌 Paramètres essentiels à modifier
+
+```ini
+############################
+# Mode de fonctionnement du Proxy
+############################
+# 0 = Proxy actif (envoie les données de lui-même au serveur Zabbix)
+# 1 = Proxy passif (attend que le serveur Zabbix vienne récupérer les données)
+ProxyMode=1                         # Mode passif
+
+############################
+# Serveur Zabbix principal
+############################
+Server=192.168.10.101               # Adresse IP du serveur Zabbix principal
+#Server=192.168.10.101:10051        # Optionnel : préciser le port si différent du port par défaut (10051/TCP)
+
+############################
+# Identification du Proxy
+############################
+Hostname=Zabbix-proxy-site2         # Nom déclaré dans l'interface du serveur Zabbix
+
+############################
+# Fichiers de journalisation
+############################
+LogFile=/var/log/zabbix/zabbix_proxy.log   # Fichier de logs du proxy
+LogFileSize=0                               # 0 = taille illimitée
+
+# Niveau de journalisation :
+# 0 = désactivé / 1 = critique / 2 = erreur / 3 = avertissement
+# 4 = informations détaillées / 5 = mode debug maximum
+DebugLevel=4
+
+############################
+# Processus et sockets
+############################
+PidFile=/run/zabbix/zabbix_proxy.pid
+SocketDir=/run/zabbix
+
+############################
+# Base de données utilisée par le Proxy
+############################
+DBHost=127.0.0.1                    # Adresse du serveur MariaDB/MySQL
+DBName=zabbix_proxy                # Nom de la base créée précédemment
+DBUser=zabbix                     # Utilisateur de la base
+DBPassword=password               # Mot de passe associé
+
+############################
+# Supervision SNMP (optionnel)
+############################
+SNMPTrapperFile=/var/log/snmptrap/snmptrap.log
+
+############################
+# Paramètres réseau et commandes externes
+############################
+Timeout=4                         # Temps d’attente (en secondes) pour une réponse d’un agent
+FpingLocation=/usr/bin/fping     # Chemin vers la commande fping (ICMP)
+Fping6Location=/usr/bin/fping6   # Pour les requêtes ICMPv6
+
+############################
+# Requêtes lentes et accès aux statistiques
+############################
+LogSlowQueries=3000               # Enregistre les requêtes SQL > 3000 ms
+StatsAllowedIP=127.0.0.1          # Adresse(s) IP autorisée(s) à accéder aux statistiques du proxy
+```
 
 ## 2.8 Redémarrer et activer le service Proxy Zabbix 
 
@@ -262,10 +331,31 @@ Modifier `/etc/zabbix/zabbix_proxy.conf`
 systemctl restart zabbix-proxy
 systemctl enable zabbix-proxy
 ```
-## 2.9 Ajout du Proxy dans le serveur Zabbix
+## 2.9 Ajouter le Proxy dans le serveur Zabbix
+
+Une fois le service **Zabbix Proxy** installé, configuré et démarré, il doit être déclaré dans l’interface du serveur Zabbix principal pour que la communication soit possible.
+
+### 🖥️ Étapes dans l’interface Zabbix
+
+1. Connectez-vous à l’interface web du serveur Zabbix (avec un compte administrateur).
+2. Accédez au menu :  
+   **Administration → Proxys → Create proxy**
+3. Renseignez les champs suivants :
+
+| Champ              | Description |
+|--------------------|-------------|
+| **Proxy name**     | Nom du proxy (doit correspondre exactement à la valeur `Hostname=` définie dans `zabbix_proxy.conf`, ex : `Zabbix-proxy-site2`) |
+| **Proxy mode**     | Mode de fonctionnement du proxy : <br>• **Active** : le proxy envoie les données vers le serveur Zabbix.<br>• **Passive** : le serveur Zabbix vient collecter les données (mode configuré ici : `ProxyMode=1`). |
+| **Interface**      | Adresse IP ou nom d’hôte du proxy. Le port par défaut utilisé est **10051/TCP**. |
 
 <p align="center">
-<img src="https://github.com/user-attachments/assets/ec654e60-7bf2-45f8-a885-d8d8758da062" alt="Téléchargements Zabbix" width="800">
+<img src="https://github.com/user-attachments/assets/ec654e60-7bf2-45f8-a885-d8d8758da062" alt="Création Proxy Zabbix" width="700">
+</p>
+
+- Une fois ajouté, le proxy apparaîtra avec le statut **"En attente"** jusqu’à ce qu’il envoie ses premières données au serveur.
+
+<p align="center">
+<img src="https://github.com/user-attachments/assets/de809ca8-87a0-4a45-a425-57ff24aad89e" alt="Téléchargements Zabbix" width="800">
 </p>
 
 </details>
