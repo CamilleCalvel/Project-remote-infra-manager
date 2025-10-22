@@ -81,7 +81,7 @@ quit;
 ### 1.1.4 Importation de la structure de base de données initiale
 
 ```bash
-zcat /usr/share/zabbix/sql-scripts/mysql/server.sql.gz | mysql --default-character-set=utf8mb4 -u zabbix -p
+zcat /usr/share/zabbix-sql-scripts/mysql/server.sql.gz | mysql --default-character-set=utf8mb4 -u zabbix -p
 ```
 
 > Entrez le mot de passe créé précédemment.
