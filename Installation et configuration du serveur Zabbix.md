@@ -172,3 +172,92 @@ http://<nom-de-votre-serveur>:8080
 > Identifiants par défaut :  
 > - Utilisateur : `Admin` (A majuscule)  
 > - Mot de passe : `zabbix`
+
+# 2.Installation du du Proxy Zabbix
+
+Dans le cadre de la supervision de notre **site distant (Site 2)**, cette procédure décrit l’installation et la configuration d’un **proxy Zabbix**.  
+Ce proxy permet de remonter les informations de supervision vers le serveur Zabbix principal, situé sur notre infrastructure centrale.
+
+Le serveur proxy utilisé pour cette installation est une machine **Ubuntu 24.04 LTS**, intégrée au **LAN serveurs** de notre architecture réseau.
+
+📎 [**Schéma réseau associé**](https://github.com/CamilleCalvel/Project-remote-infra-manager?tab=readme-ov-file#-sch%C3%A9ma-dinfrastructure-r%C3%A9seau)
+
+## 2.1 Devenir utilisateur root
+
+Démarrer une session shell avec les privilèges root :
+
+``` bash
+sudo -s
+```
+
+## 2.2 Installer le dépôt Zabbix
+
+<p align="center">
+<img src="https://github.com/user-attachments/assets/5d0177c1-afc4-43e8-b487-968bd2fed7bf" alt="Téléchargements Zabbix" width="1100">
+</p>
+
+Télécharger le paquet du dépôt officiel Zabbix :
+
+``` bash
+wget https://repo.zabbix.com/zabbix/7.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_latest_7.0+ubuntu24.04_all.deb
+dpkg -i zabbix-release_latest_7.0+ubuntu24.04_all.deb
+apt update
+```
+
+## 2.3 Installer Zabbix Proxy (avec support MySQL/MariaDB)
+
+``` bash
+apt install zabbix-proxy-mysql zabbix-sql-scripts
+```
+
+## 2.4 Créer la base de données initiale pour le Proxy
+
+⚠️ Assurez-vous qu'un serveur MySQL/MariaDB est installé et fonctionnel.
+
+### a. Se connecter à MySQL
+
+``` bash
+mysql -u root -p
+```
+
+### b. Créer la base et l'utilisateur
+
+``` sql
+create database zabbix_proxy character set utf8mb4 collate utf8mb4_bin;
+create user 'zabbix'@'localhost' identified by 'password';
+grant all privileges on zabbix_proxy.* to 'zabbix'@'localhost';
+set global log_bin_trust_function_creators = 1;
+flush privileges;
+quit;
+```
+
+## 2.5 Importer le schéma de base de données
+
+``` bash
+cat /usr/share/zabbix-sql-scripts/mysql/proxy.sql | mysql --default-character-set=utf8mb4 -uzabbix -p zabbix_proxy
+```
+
+## 2.6 Désactiver l'option `log_bin_trust_function_creators`
+
+``` bash
+mysql -uroot -p
+```
+
+``` sql
+set global log_bin_trust_function_creators = 0;
+quit;
+```
+## 2.7 Configuration du Proxy Zabbix via le fichier de configuration
+
+
+
+
+## 2.8 Redémarrer et activer le service Proxy Zabbix 
+
+Modifier `/etc/zabbix/zabbix_proxy.conf` puis :
+
+``` bash
+systemctl restart zabbix-proxy
+systemctl enable zabbix-proxy
+```
+
