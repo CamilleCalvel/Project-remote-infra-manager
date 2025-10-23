@@ -24,7 +24,7 @@ L’entreprise dispose d’un système d’information centralisé réparti entr
 ## 📡 Schéma d’Infrastructure Réseau
 
 <p align="center">
-<img src="https://github.com/user-attachments/assets/7e62e254-81af-43ae-8ddf-ea8ee55d6b1d" alt="Pictures" width="1500" >
+<img src="https://github.com/user-attachments/assets/8abf5e4d-f3d1-4934-9727-3b87b978bd73" alt="Pictures" width="1500" >
 </p>
 
 ## ⚙️ Avancement du Projet
