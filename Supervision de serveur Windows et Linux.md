@@ -10,30 +10,6 @@
 
 ### Linux en utilisant la communauté
 
-# SNMPv3
-
-
-## Vérification de la supervision
-
-Pour vérifier que SNMPv3 fonctionne correctement :
-
-1. Dans **Collecte de données → Hôtes → Éléments**, sélectionnez un item (comme *Uptime*).
-2. Clique sur **Exécuter maintenant**.
-
-
-
-3. Le message `Requête envoyée avec succès` doit apparaître.  
-
-
-4. Allez dans **Surveillance → Dernières données**, filtrez les informations affichées en tapant le nom de votre hôte dans le champ Hôtes et le mot « uptime » dans le champ Nom.
-5. Sur l’un des noms Uptime et choisissez d’afficher les 500 dernières valeurs
-
-
-Si les valeurs les plus récentes affichées sont postérieures à la configuration de l’hôte en SNMPv3 alors c’est que la surveillance via SNMPv3 s’exécute correctement actuellement
-<p align="center">
-<img src="https://github.com/user-attachments/assets/f3e4e79d-77a3-4af1-9759-0adb4dbca7b3" alt="Téléchargements Zabbix" width="1500">
-</p
-
 # SNMPv3 – Mise en œuvre sécurisée
 
 ## 📌 Introduction
@@ -184,10 +160,16 @@ snmpget -v 3 -u authPrivUser -l AuthPriv -a SHA-512 -A mon-super-mot-de-passe -x
 
 1. `Surveillance → Dernières données`
 2. Filtrez avec votre **hôte** et recherchez **uptime**
-3. <p align="center">
+
+<p align="center">
 <img src="https://github.com/user-attachments/assets/b61552a6-ce46-4d90-b897-af2fa21574d2" alt="Téléchargements Zabbix" width="1200">
 </p>
-4. Vérifiez que les données sont récentes ➜ **SNMPv3 fonctionne**
+
+3. Vérifiez que les données sont récentes ➜ **SNMPv3 fonctionne**
+
+<p align="center">
+<img src="https://github.com/user-attachments/assets/f3e4e79d-77a3-4af1-9759-0adb4dbca7b3" alt="Téléchargements Zabbix" width="1500">
+</p
 
 ---
 
