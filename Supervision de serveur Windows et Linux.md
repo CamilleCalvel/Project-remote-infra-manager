@@ -84,6 +84,7 @@ Puis redémarrez le service SNMP :
 service snmpd start
 service snmpd status
 ```
+Le fichier `snmpd.conf` affiche maintenant :
 
 <p align="center">
 <img src="https://github.com/user-attachments/assets/4d9b8d89-d8ff-4515-95e4-50720d88085d" alt="Téléchargements Zabbix" width="1100">
@@ -144,7 +145,7 @@ snmpget -v 3 -u authPrivUser -l AuthPriv -a SHA-512 -A mon-super-mot-de-passe -x
 
 ### Méthode n°1 – Test d’un Item
 
-1. `Collecte de données → Hôtes → Items`
+1. `Collecte de données → Hôtes → Eléments`
 2. Sélectionnez un item, ex : **Uptime**
 3. Cliquez sur **Exécuter maintenant**
 <p align="center">
