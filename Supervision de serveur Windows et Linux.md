@@ -72,7 +72,7 @@ Vérifie la création de l'utilisateur dans le fichier  `/etc/snmp/snmpd.conf`.
 Vérifie la création de l'utilisateur dans le fichier `/var/lib/snmp/snmpd.conf`.
 
 <p align="center">
-<img src="https://github.com/user-attachments/assets/4f487d30-8bb9-4cac-9b0f-9804564ce0cb" alt="Téléchargements Zabbix" width="600">
+<img src="https://github.com/user-attachments/assets/4f487d30-8bb9-4cac-9b0f-9804564ce0cb" alt="Téléchargements Zabbix" width="800">
 </p>
 
 Relance le service :
@@ -84,7 +84,7 @@ service snmpd status
 Après le redémarrage, modification dans le fichier `/var/lib/snmp/snmpd.conf`.
 
 <p align="center">
-<img src="https://github.com/user-attachments/assets/4d9b8d89-d8ff-4515-95e4-50720d88085d" alt="Téléchargements Zabbix" width="600">
+<img src="https://github.com/user-attachments/assets/4d9b8d89-d8ff-4515-95e4-50720d88085d" alt="Téléchargements Zabbix" width="1000">
 </p>
 
 ***
@@ -100,7 +100,7 @@ snmpget -v 3 -u authPrivUser -l AuthPriv -a SHA-512 -A mon-super-mot-de-passe -x
 Le résultat doit afficher le nom du système supervisé.
 
 <p align="center">
-<img src="https://github.com/user-attachments/assets/73767ee3-8cfe-4de4-9ee0-15e52460f895" alt="Téléchargements Zabbix" width="600">
+<img src="https://github.com/user-attachments/assets/73767ee3-8cfe-4de4-9ee0-15e52460f895" alt="Téléchargements Zabbix" width="1300">
 </p>
 
 
@@ -117,7 +117,7 @@ snmpget -v 3 -u authPrivUser -l AuthPriv -a SHA-512 -A mon-super-mot-de-passe -x
 Si la commande retourne le nom du système, la communication SNMPv3 est fonctionnelle entre l’hôte et le serveur Zabbix.
 
 <p align="center">
-<img src="https://github.com/user-attachments/assets/af83fc3d-0476-4f67-bc59-b9b691604330" alt="Téléchargements Zabbix" width="600">
+<img src="https://github.com/user-attachments/assets/af83fc3d-0476-4f67-bc59-b9b691604330" alt="Téléchargements Zabbix" width="1300">
 </p>
 
 ***
