@@ -97,7 +97,7 @@ Le fichier `snmpd.conf` affiche maintenant :
 Vérifiez le bon fonctionnement en local :
 
 ```bash
-snmpget -v 3 -u authPrivUser -l AuthPriv -a SHA-512 -A mon-super-mot-de-passe -x AES -X ma-super-phrase-privee 127.0.0.1 1.3.6.1.2.1.1.1.0
+snmpget -v 3 -u authPrivUser -l AuthPriv -a SHA-512 -A "mon-super-mot-de-passe" -x AES -X "ma-super-phrase-privee" 127.0.0.1 1.3.6.1.2.1.1.1.0
 ```
 
 Le résultat doit afficher des informations sur le système (ex : nom de l’hôte).
@@ -113,7 +113,7 @@ Le résultat doit afficher des informations sur le système (ex : nom de l’hô
 Testez depuis l’extérieur :
 
 ```bash
-snmpget -v 3 -u authPrivUser -l AuthPriv -a SHA-512 -A mon-super-mot-de-passe -x AES -X ma-super-phrase-privee 192.168.11.101 1.3.6.1.2.1.1.1.0
+snmpget -v 3 -u authPrivUser -l AuthPriv -a SHA-512 -A "mon-super-mot-de-passe" -x AES -X "ma-super-phrase-privee" 192.168.11.101 1.3.6.1.2.1.1.1.0
 ```
 
 ✅ Si la commande renvoie les informations système, **SNMPv3 fonctionne entre l’hôte et le serveur Zabbix**.
