@@ -66,7 +66,7 @@ net-snmp-config --create-snmpv3-user -ro -a SHA-512 -A mon-super-mot-de-passe -x
 Vérifie la création de l'utilisateur dans le fichier  `/etc/snmp/snmpd.conf`.
 
 <p align="center">
-<img src="https://github.com/user-attachments/assets/5b1d0384-cf3f-4a0f-a8ba-cde899d0a331" alt="Téléchargements Zabbix" width="500">
+<img src="https://github.com/user-attachments/assets/5b1d0384-cf3f-4a0f-a8ba-cde899d0a331" alt="Téléchargements Zabbix" width="400">
 </p>
 
 Vérifie la création de l'utilisateur dans le fichier `/var/lib/snmp/snmpd.conf`.
@@ -84,7 +84,7 @@ service snmpd status
 Après le redémarrage, modification dans le fichier `/var/lib/snmp/snmpd.conf`.
 
 <p align="center">
-<img src="https://github.com/user-attachments/assets/4d9b8d89-d8ff-4515-95e4-50720d88085d" alt="Téléchargements Zabbix" width="1000">
+<img src="https://github.com/user-attachments/assets/4d9b8d89-d8ff-4515-95e4-50720d88085d" alt="Téléchargements Zabbix" width="1100">
 </p>
 
 ***
@@ -100,7 +100,7 @@ snmpget -v 3 -u authPrivUser -l AuthPriv -a SHA-512 -A mon-super-mot-de-passe -x
 Le résultat doit afficher le nom du système supervisé.
 
 <p align="center">
-<img src="https://github.com/user-attachments/assets/73767ee3-8cfe-4de4-9ee0-15e52460f895" alt="Téléchargements Zabbix" width="1300">
+<img src="https://github.com/user-attachments/assets/73767ee3-8cfe-4de4-9ee0-15e52460f895" alt="Téléchargements Zabbix" width="1500">
 </p>
 
 
@@ -117,7 +117,7 @@ snmpget -v 3 -u authPrivUser -l AuthPriv -a SHA-512 -A mon-super-mot-de-passe -x
 Si la commande retourne le nom du système, la communication SNMPv3 est fonctionnelle entre l’hôte et le serveur Zabbix.
 
 <p align="center">
-<img src="https://github.com/user-attachments/assets/af83fc3d-0476-4f67-bc59-b9b691604330" alt="Téléchargements Zabbix" width="1300">
+<img src="https://github.com/user-attachments/assets/af83fc3d-0476-4f67-bc59-b9b691604330" alt="Téléchargements Zabbix" width="1500">
 </p>
 
 ***
@@ -135,14 +135,20 @@ Si la commande retourne le nom du système, la communication SNMPv3 est fonction
     - Phrase d’authentification et de chiffrement selon tes paramètres.
 5. Clique sur **Actualiser**.
 
+<p align="center">
+<img src="https://github.com/user-attachments/assets/b568b028-ee67-4681-b746-8e0d1fc63c26" alt="Téléchargements Zabbix" width="900">
+</p>
+
 ***
 
 ## Vérification de la supervision
 
 Pour vérifier que SNMPv3 fonctionne correctement :
 
-1. Dans **Configuration → Hôtes → Éléments**, sélectionne un item (comme *Uptime*).
+1. Dans **Collecte de données → Hôtes → Éléments**, sélectionnez un item (comme *Uptime*).
 2. Clique sur **Exécuter maintenant**.
+
+
 3. Le message `Requête envoyée avec succès` doit apparaître.
 4. Va dans **Surveillance → Dernières données** et cherche ton hôte, puis *uptime*.
 Si les dernières valeurs sont mises à jour, SNMPv3 fonctionne.
