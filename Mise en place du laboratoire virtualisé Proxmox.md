@@ -108,10 +108,80 @@
 <details><summary><h2>Stormshield</h2></summary>
   
 ### Mise en place de Stormshield
-### Paramétrage des interfaces réseaux
+
+
+
+### 🔧 Configuration des interfaces réseau — Stormshield
+
+#### ✅ 1. Prérequis et droits d’accès
+
+Avant toute modification via l’interface web Stormshield :
+
+- Assurez-vous que votre compte dispose des **droits en écriture**.
+- Si besoin, modifiez les permissions en cliquant sur votre **profil administrateur (en haut à droite)** de l’interface web.
+
+---
+
+#### 🌐 2. Accéder à la gestion des interfaces
+
+1. Connectez-vous à l’interface web du pare-feu Stormshield.  
+2. Accédez au menu : **Configuration → Network → Interfaces**
+
+#### ⚙️ 3. Paramétrage des interfaces
+
+**Statut de l’interface**  
+| Option | Description |
+|--------|-------------|
+| **ON** | Active l'interface et permet l’acheminement du trafic. |
+| **OFF** | Désactive l’interface — aucun trafic ne passe. |
+
+💡 *N’activez que les interfaces réellement utilisées.*
+
+---
+
+**Nom de l’interface**    
+- Indiquez un nom **clair et explicite**.
+- Exemple : `LAN-SERVERS`, `DMZ-WEB`, `WAN-FIBER`.
+
+---
+
+**Type d’interface**  
+| Type | Usage | Description |
+|------|-------|-------------|
+| **Interne (protégée)** | Réseau local sécurisé | LAN, serveurs internes, VLAN. |
+| **Externe (publique)** | Réseau non maîtrisé / Internet | WAN, lien vers FAI. |
+
+---
+
+**Mode d’attribution IP**  
+| Mode | Description | Recommandé pour |
+|------|-------------|------------------|
+| **Statique (IP fixe)** | Adresse IP manuelle, ne change pas | Serveurs, pare-feu, routeurs |
+| **DHCP (dynamique)** | Adresse IP attribuée automatiquement par un serveur DHCP | Postes utilisateurs, appareils mobiles, équipements temporaires |
+
+---
+
+**Adresse IP et masque**  
+- Configurez l’adresse IPv4 et son masque (ex : `192.168.10.10 / 255.255.255.0`).
+- Respectez le **plan d’adressage IP de l’infrastructure**.
+
+---
+
+**Commentaires**  
+- Ajoutez des informations utiles : rôle, VLAN, plage réseau, remarques techniques.
+- Utile pour la **maintenance, le support et les audits**.
+
+<p align="center">
+<img src="https://github.com/user-attachments/assets/ae453763-cdc0-4dc0-bcad-805180eee7ac" alt="Pictures" width="800" >
+</p>
+
 ### Mise en place du Nat
 ### VPN site à site
 ### Dhcp server
 ### Port forwarding
+
+<p align="center">
+<img src="" alt="Pictures" width="800" >
+</p>
 
 </details>
